@@ -1,0 +1,47 @@
+.home {
+    /* background-color: bisque; */
+    min-height: 105vh;
+    background-image: linear-gradient(white, #FFDAAF);
+}
+
+.row {
+    padding-right: 0px;
+    margin-right: 0px;
+    padding: 0% 2%;
+}
+
+.icons{
+    border-bottom: 20px;
+    background-color: red;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: linear-gradient(#FCF8E8, #FFE3A9);
+}
+
+.cardmargin {
+    height: 10%;
+    /* padding: 0px 50px 0px 10px; */
+    
+    text-decoration: solid;
+    /* border-width: 1.5%px;
+    border-top: 0;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border-color: #F47C7C;
+    border-style:solid; */
+    /* padding: 20px; */
+
+}
+
+.link:hover {
+    color: red;
+}
+
+.link {
+    /* padding: 5%;  */
+    text-decoration: none;
+    font-size: larger;
+    color: black;
+}

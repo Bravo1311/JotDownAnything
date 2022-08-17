@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+
+
+
+
+.navbar-collapse {
+  color: rgb(151, 27, 27);
+}
+
+.footer{
+  color: #FFF2F9;
+  padding-top: 20px;
+  text-align: center;
+}
+
+
