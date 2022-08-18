@@ -38,7 +38,7 @@ const Todos = () => {
     const context2 = useContext(statusContext)  
 
     const fetchLists = async () => {
-        console.log();
+        console.log(context2.status);
         if(!context2.status){
             return <Navigate to = "/" replace = {true}/>
         }
