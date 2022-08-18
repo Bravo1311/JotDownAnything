@@ -87,9 +87,10 @@ const Todos = () => {
 
     useEffect(() => {
         console.log('user is: '+context.user.email);
-        if(context.user.email!=='undefined'){
-            fetchLists()
+        if(context.user.email=='undefined'){
+            return <Navigate to="/" replace={true} />
         }
+        fetchLists()
         
     }, [])
 
