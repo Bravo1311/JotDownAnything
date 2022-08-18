@@ -4,6 +4,7 @@ const gettodoslist = async (req, res) => {
     // res.send('First Response')
     try {
         const email = req.query.email
+        console.log('email is '+email);
         const users = await todos.find({
             email: email
         })
