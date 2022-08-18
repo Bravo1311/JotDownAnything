@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useReducer } from "react";
 import { UserContext } from "../context/userContext";
 import { TodosContext } from "../context/todosContext";
+import { statusContext } from "../context/statusContext";
 // import todoReducer from '../reducers/reducer'
 import Axios from "axios";
 import { AiFillCaretRight, AiFillDelete } from 'react-icons/ai'
@@ -24,7 +25,7 @@ import { v4 } from "uuid";
 import '../Custom CSS/Todos.css'
 
 const instance = Axios.create({
-    baseURL: ''
+    baseURL: 'http://localhost:5000'
 })
 
 const Todos = () => {
@@ -34,13 +35,15 @@ const Todos = () => {
     const [items, setItems] = useState([])
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
+    const context2 = useContext(statusContext)  
 
     const fetchLists = async () => {
-        console.log(context.user.email);
-        if(!context.user.email){
+        console.log();
+        if(!context2.status){
             return <Navigate to = "/" replace = {true}/>
         }
         const { data } = await instance.get(`/todos?email=${context.user.email}`)
+        
         setLists(data)
     }
 

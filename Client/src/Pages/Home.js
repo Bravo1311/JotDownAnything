@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
 
 import {
@@ -14,17 +14,22 @@ import {
 // import Repos from "../Components/Repos";
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+import { statusContext } from "../context/statusContext";
 import { toast } from "react-toastify";
 import '../Custom CSS/Home.css'
 
 const Home = () => {
     const context = useContext(UserContext)
-    const [query, setQuery] = useState('')
-    const [user, setUser] = useState('')
+    const context2 = useContext(statusContext)  
+
+    useEffect(()=>{
+        context2.setStatus(true)
+    },[])
 
     if (!context.user?.email) {
         return <Navigate to="/signin" replace={true} />
     }
+  
     return (
         <div className="home" >
             <div className="row rowhome" >
