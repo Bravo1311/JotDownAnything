@@ -29,6 +29,10 @@ const Home = () => {
     if (!context.user?.email) {
         return <Navigate to="/signin" replace={true} />
     }
+    if(!context2.status){
+        console.log('halting')
+        return <Navigate to = "/" replace = {true}/>
+    }
   
     return (
         <div className="home" >
