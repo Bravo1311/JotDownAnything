@@ -21,7 +21,9 @@ const SignIn = () =>{
     const [password, setPassword] = useState('')
 
     useEffect(()=>{
-      firebase.auth().onAuthStateChanged(context.setUser);
+      firebase.auth().onAuthStateChanged((user)=>{
+        context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
+      });
     },[])
 
 

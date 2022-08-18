@@ -1,7 +1,6 @@
 import React, { useState, useEffect }from 'react';
 
 import { UserContext } from './context/userContext';
-import { statusContext } from './context/statusContext';
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -29,12 +28,12 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [status, setStatus] = useState(false)
 
+  
   return (
     <>
     <Router>
       <ToastContainer/>
       <UserContext.Provider value = {{user, setUser}}>
-        <statusContext.Provider value = {{status,setStatus}}>
         <Header/>
         <Routes>
           <Route exact path = "/" element = {<Home/>}>
@@ -48,8 +47,6 @@ const App = () => {
           
         </Routes>
         {/* <Footer/> */}
-        </statusContext.Provider>
-       
       </UserContext.Provider>
       </Router>
     </>
