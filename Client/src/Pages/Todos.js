@@ -25,7 +25,7 @@ import '../Custom CSS/Todos.css'
 
 const instance = Axios.create({
     // baseURL: 'http://localhost:5000'
-    baseURL:  process.env.NODE_ENV ? 'https://jotdownanything.herokuapp.com/': `http://${process.env.PORT}`
+    baseURL:   'https://jotdownanything.herokuapp.com/'
 })
 
 const Todos = () => {
