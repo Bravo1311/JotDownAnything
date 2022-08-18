@@ -25,7 +25,7 @@ import { v4 } from "uuid";
 import '../Custom CSS/Todos.css'
 
 const instance = Axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: ''
 })
 
 const Todos = () => {
