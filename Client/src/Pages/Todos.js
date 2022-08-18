@@ -38,6 +38,9 @@ const Todos = () => {
     
 
     const fetchLists = async () => {
+        if(context.user.email==undefined){
+            return <Navigate to="/" replace={true} />
+        }
         const { data } = await instance.get(`/todos?email=${context.user.email}`)
         setLists(data)
     }
@@ -122,9 +125,7 @@ const Todos = () => {
         }
     }
 
-    if(context.user.email==undefined){
-        return <Navigate to="/" replace={true} />
-    }
+   
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
     return (
