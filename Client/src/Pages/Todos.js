@@ -35,6 +35,8 @@ const Todos = () => {
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
 
+    
+
     const fetchLists = async () => {
         const { data } = await instance.get(`/todos?email=${context.user.email}`)
         setLists(data)
@@ -72,30 +74,27 @@ const Todos = () => {
 
     const deleteListContent = async (id) => {
         console.log(id)
-        setLists(lists.filter(item=>item._id!==id))
+        setLists(lists.filter(item => item._id !== id))
         try {
             await instance.delete(`/todos?id=${id}`)
-            toast("Todo Group Successfully Removed", {type:"success"})
+            toast("Todo Group Successfully Removed", { type: "success" })
         } catch (error) {
             toast("Request Failed", { type: "error", autoClose: 3000 })
         }
-      
+
         // setItemId(id)
         fetchLists()
     }
 
 
     useEffect(() => {
-        console.log('user is: '+context.user.email);
-        if(context.user.email==undefined){
-            return <Navigate to="/" replace={true} />
-        }
+        console.log('user is: ' + context.user.email);
         fetchLists()
-        
+
     }, [])
 
-    const deleteItem = async id =>{
-        const newList = items.filter((item)=>item.uid!==id)
+    const deleteItem = async id => {
+        const newList = items.filter((item) => item.uid !== id)
         setItems(newList)
         id = itemId
         try {
@@ -107,7 +106,7 @@ const Todos = () => {
         } catch (error) {
             toast("Not able to locate user", { type: "error", autoClose: 3000 })
         }
-    } 
+    }
 
     const createNewList = async () => {
         if (!query) {
@@ -121,6 +120,10 @@ const Todos = () => {
         } catch (error) {
             toast("Not able to locate user", { type: "error" })
         }
+    }
+
+    if(context.user.email==undefined){
+        return <Navigate to="/" replace={true} />
     }
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
@@ -145,12 +148,12 @@ const Todos = () => {
                             </InputGroup>
                             <h4 className="mt-3"><center>Your Todo Lists</center></h4>
                             <ListGroup className=" xyz">
-                                
+
                                 {lists.slice(0).reverse().map((item, index) => (
                                     <ListGroupItem key={item._id} className=' todolists mt-2'>
-                                        <Container fluid  className="">
-                                            
-                                            <Row tabIndex={index} className="items "onClick={() => { fetchListContent(item._id) }}>
+                                        <Container fluid className="">
+
+                                            <Row tabIndex={index} className="items " onClick={() => { fetchListContent(item._id) }}>
                                                 <Col md="10" sm='10'>
                                                     {item.name}
                                                     {/* <span className="float-right"
@@ -161,7 +164,7 @@ const Todos = () => {
                                                 <Col md="2" sm='2'>
                                                     <span className="float-right"
                                                         onClick={() => { deleteListContent(item._id) }}
-                                                    ><AiFillDelete size={25}/>
+                                                    ><AiFillDelete size={25} />
                                                     </span>
                                                 </Col>
                                             </Row>
@@ -186,26 +189,26 @@ const Todos = () => {
                             </InputGroup>
                             <h4 className="mt-3"><center>Your Items</center></h4>
                             <ListGroup className="mb-2 abc">
-                            <Container fluid>
-                                
-                                {items.length !== 0 ? items.map(todo => (
-                                    
+                                <Container fluid>
+
+                                    {items.length !== 0 ? items.map(todo => (
+
                                         <ListGroupItem className="item2" key={todo.uid}>
                                             <Row >
                                                 <Col sm='11'>{todo.todo}</Col>
                                                 <Col sm='1'> <span
                                                     className="float-right"
-                                                    onClick={() => {deleteItem(todo.uid)}}>                                                    <FaCheckDouble />
+                                                    onClick={() => { deleteItem(todo.uid) }}>                                                    <FaCheckDouble />
                                                 </span>
                                                 </Col>
                                             </Row>
                                         </ListGroupItem>
-                                   
 
 
-                                )): <h4 className="mt-5">No itmes to display</h4>}
-                                 </Container>
-                                </ListGroup> 
+
+                                    )) : <h4 className="mt-5">No itmes to display</h4>}
+                                </Container>
+                            </ListGroup>
 
                         </Col>
                     </Row>
