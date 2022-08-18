@@ -86,10 +86,11 @@ const Todos = () => {
 
 
     useEffect(() => {
-        if(!context.user.email){
-            return
+        console.log('user is: '+context.user.email);
+        if(context.user.email){
+            fetchLists()
         }
-        fetchLists()
+        
     }, [])
 
     const deleteItem = async id =>{
