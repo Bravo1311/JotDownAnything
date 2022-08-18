@@ -85,11 +85,12 @@ const Todos = () => {
     }
 
 
-    // useEffect(() => {
-    // }, [])
-
-    fetchLists()
-
+    useEffect(() => {
+        if(!context.user.email){
+            return
+        }
+        fetchLists()
+    }, [])
 
     const deleteItem = async id =>{
         const newList = items.filter((item)=>item.uid!==id)
