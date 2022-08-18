@@ -35,14 +35,17 @@ const Todos = () => {
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
 
-    
+
 
     const fetchLists = async () => {
-        if(context.user.email==undefined){
+        console.log('email is ' + context.user.email);
+        if (context.user.email === undefined) {
             return <Navigate to="/" replace={true} />
+        } else {
+            const { data } = await instance.get(`/todos?email=${context.user.email}`)
+            setLists(data)
         }
-        const { data } = await instance.get(`/todos?email=${context.user.email}`)
-        setLists(data)
+
     }
 
     const createNewItem = async (id) => {
@@ -125,7 +128,7 @@ const Todos = () => {
         }
     }
 
-   
+
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
     return (
