@@ -37,6 +37,9 @@ const Todos = () => {
 
     const fetchLists = async () => {
         console.log(context.user.email);
+        if(!context.user.email){
+            return <Navigate to = "/" replace = {true}/>
+        }
         const { data } = await instance.get(`/todos?email=${context.user.email}`)
         setLists(data)
     }
