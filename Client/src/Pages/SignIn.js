@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
     Container, Form, Button ,FormGroup, Label, Col, Input,
     Row, Card,CardBody, CardFooter, CardHeader,  NavItem,
@@ -6,6 +6,7 @@ import {
 } from "reactstrap"
 
 import firebase from "firebase/compat/app"
+import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
 import { UserContext } from "../context/userContext";
 import {Navigate} from "react-router-dom"
@@ -18,6 +19,11 @@ const SignIn = () =>{
     const context = useContext(UserContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(()=>{
+      firebase.auth().onAuthStateChanged(context.setUser);
+    },[])
+
 
     const handleSignUp = () =>{
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -36,6 +42,8 @@ const SignIn = () =>{
         handleSignUp()
         
     }
+
+
     if(context.user?.email){
       return  <Navigate to="/" replace={true} />
     }

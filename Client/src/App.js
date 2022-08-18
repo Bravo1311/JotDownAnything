@@ -1,18 +1,17 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 
 import { UserContext } from './context/userContext';
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
-import {BrowserRouter as Router, Routes, Route, link} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, link, Navigate} from "react-router-dom"
 
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css"
 
-import firebase from "firebase/compat/app"
-import "firebase/compat/auth"
 
-import firebaseconfig from './Firebase/firebase';
+
+import fire from './Firebase/firebase';
 
 import SignIn from './Pages/SignIn'
 import SignUp from './Pages/SignUp'
@@ -25,10 +24,10 @@ import Notes from './Pages/Notes';
 import Header from './Layout/Headers'
 
 
-firebase.initializeApp(firebaseconfig)
-
 const App = () => {
   const [user, setUser] = useState(null)
+
+
   return (
     <>
     <Router>

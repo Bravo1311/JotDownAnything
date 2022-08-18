@@ -1,3 +1,6 @@
+import firebase from "firebase/compat/app"
+import "firebase/compat/auth"
+
 const firebaseconfig = {
     apiKey: "AIzaSyAo6IxBpXIBgxJronNaxJo-_ncLtb27QlQ",
     authDomain: "mygitapp-5d2d7.firebaseapp.com",
@@ -7,4 +10,5 @@ const firebaseconfig = {
     appId: "1:1085346484635:web:1bdb8e032d6c1bf800513e",
     measurementId: "G-JCGJ8WW8MY"
   };
-export default firebaseconfig
+const fire = firebase.initializeApp(firebaseconfig)
+export default fire

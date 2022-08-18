@@ -15,7 +15,9 @@ import {Link, Outlet} from "react-router-dom"
 
 import { UserContext } from "../context/userContext";
 
+import fire from '../Firebase/firebase';
 
+import App from "../App";
 
 const Header = () => {
 
@@ -40,6 +42,7 @@ const Header = () => {
                     context.user ? (
                     <NavItem >
                         <NavLink onClick={() =>{
+                            fire.auth().signOut()
                             context.setUser(null)
                         } } to = "/" >Log Out</NavLink>
                     </NavItem>

@@ -1,50 +1,55 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
-    Container, Form, Button ,FormGroup, Label, Col, Input,
-    Row, Card,CardBody, CardFooter, CardHeader
+  Container, Form, Button, FormGroup, Label, Col, Input,
+  Row, Card, CardBody, CardFooter, CardHeader
 } from "reactstrap"
 
 import firebase from "firebase/compat/app"
 
 import { UserContext } from "../context/userContext";
-import {Navigate} from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 import { toast } from "react-toastify";
 
-const SignUp = () =>{
+const SignUp = () => {
 
-    const context = useContext(UserContext)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
+  const context = useContext(UserContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
 
-    const handleSignUp = () =>{
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then( res => {
-            console.log(res);
-            res.user.updateProfile({
-              displayName:username
-            })
-            context.setUser({email:res.user.email, Uid:res.user.uid, username:username})
+  const handleSignUp = () => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log(res);
+        res.user.updateProfile({
+          displayName: username
         })
-        .catch(error => {
-            console.log(error)
-            toast(error.message, {type:"error"})
-        })
-      }
+        context.setUser({ email: res.user.email, Uid: res.user.uid, username: username })
+      })
+      .catch(error => {
+        console.log(error)
+        toast(error.message, { type: "error" })
+      })
+  }
 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        handleSignUp()
-        
-    }
-    if(context.user?.email){
-      return  <Navigate to="/" replace={true} />
-    }
-        
 
-    return(
-        <Container className="text-center">
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(context.setUser);
+  }, [])
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    handleSignUp()
+
+  }
+  if (context.user?.email) {
+    return <Navigate to="/" replace={true} />
+  }
+
+
+  return (
+    <Container className="text-center">
       <Row>
         <Col lg={6} className="offset-lg-3 mt-5">
           <Card>
@@ -107,7 +112,7 @@ const SignUp = () =>{
         </Col>
       </Row>
     </Container>
-    )
+  )
 }
 
 export default SignUp;
