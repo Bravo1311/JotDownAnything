@@ -25,7 +25,8 @@ import '../Custom CSS/Todos.css'
 
 const instance = Axios.create({
     // baseURL: 'http://localhost:5000'
-    baseURL:   'https://jotdownanything.herokuapp.com/'
+    // baseURL:   'https://jotdownanything.herokuapp.com' 
+    baseURL: ''
 })
 
 const Todos = () => {
