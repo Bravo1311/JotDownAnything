@@ -87,7 +87,7 @@ const Todos = () => {
 
     useEffect(() => {
         console.log('user is: '+context.user.email);
-        if(context.user.email){
+        if(context.user.email!=='undefined'){
             fetchLists()
         }
         
