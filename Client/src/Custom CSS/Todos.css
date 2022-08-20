@@ -75,13 +75,14 @@
   height: 400px;
   margin-bottom: 6%;
   overflow-x: hidden; 
-  border: 15px;
+  border-left: 5px;
+  border-right: 0;
   border-top: 0px;
   border-style: solid;
   border-image: 
   linear-gradient(
     to bottom, 
-    #FFFDF9, 
+    #0A1931, 
     rgba(0, 0, 0, 0)
   ) 1 100%;
 }

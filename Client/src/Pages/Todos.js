@@ -216,7 +216,7 @@ const Todos = () => {
 
 
 
-                                    )) : <h4 className="mt-5">No itmes to display</h4>}
+                                    )) : <h4 className="mt-5 text-center animate__animated animate__lightSpeedInLeft">No itmes to display</h4>}
                                 </Container>
                             </ListGroup>
 
