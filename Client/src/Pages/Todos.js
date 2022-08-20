@@ -37,12 +37,9 @@ const Todos = () => {
     const [todoItem, setTodoItem] = useState('')
 
     useEffect(() => {
-        window.addEventListener("beforeunload", alertUser);
-        return () => {
-            <Navigate to = "/" replace = {true}/>
-            window.removeEventListener("beforeunload", alertUser);
-            
-        };
+       if(context.user===undefined){
+        <Navigate to = '/' replace = {true}/>
+       }
     }, []);
     const alertUser = (e) => {
         e.preventDefault();
@@ -62,7 +59,6 @@ const Todos = () => {
                 console.log(error);
                 return <Navigate to="/" replace={true} />
             }
-            
         }
 
     }
