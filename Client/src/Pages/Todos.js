@@ -38,6 +38,7 @@ const Todos = () => {
 
     useEffect(()=>{
         firebase.auth().onAuthStateChanged((user)=>{
+            console.log('authenticating user');
           context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
         });
       },[])
