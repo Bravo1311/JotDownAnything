@@ -37,7 +37,7 @@ const Header = () => {
             }</NavbarText>
             <NavbarToggler onClick={toggle}/>
             <Collapse isOpen = {isOpen} navbar>
-                <Nav className="ml-auto" navbar>
+                <Nav className="ms-auto" navbar>
                     {
                     context.user ? (
                     <NavItem >
