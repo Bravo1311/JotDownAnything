@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
 
 const userschema = new mongoose.Schema({
-    account:{
+    email:{
         type:String,
         required:true
     },
-    author:{
-        type:Object,
+    name:{
+        type:String,
+        required:true
+    },
+    quotes:{
+        type:Array,
         required:true
     }
 })

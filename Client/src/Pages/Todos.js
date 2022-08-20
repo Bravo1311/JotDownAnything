@@ -65,7 +65,7 @@ const Todos = () => {
             // setUser(data)
             toast("Successfully added", { type: "success", autoClose: 3000 })
         } catch (error) {
-            toast("Not able to locate user", { type: "error", autoClose: 3000 })
+            toast("Request Failed", { type: "error", autoClose: 3000 })
         }
     }
 
@@ -201,7 +201,7 @@ const Todos = () => {
                             <ListGroup className="mb-2 abc">
                                 <Container fluid>
 
-                                    {items.length !== 0 ? items.map(todo => (
+                                    {items.length !== 0 ? items.slice(0).reverse().map(todo => (
 
                                         <ListGroupItem className="item2 item2 animate__animated animate__lightSpeedInLeft" key={todo.uid}>
                                             <Row >
