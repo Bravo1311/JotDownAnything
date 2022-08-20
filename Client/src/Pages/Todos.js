@@ -36,12 +36,24 @@ const Todos = () => {
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
 
-    useEffect(()=>{
-        firebase.auth().onAuthStateChanged((user)=>{
-            console.log('authenticating user');
-          context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
-        });
-      },[])
+    useEffect(() => {
+        window.addEventListener("beforeunload", alertUser);
+        return () => {
+            window.removeEventListener("beforeunload", alertUser);
+            <Navigate to = "/" replace = {true}/>
+        };
+    }, []);
+    const alertUser = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    // useEffect(()=>{
+    //     firebase.auth().onAuthStateChanged((user)=>{
+    //         console.log('authenticating user');
+    //       context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
+    //     });
+    //   },[])
 
 
 
