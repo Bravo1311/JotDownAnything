@@ -55,8 +55,14 @@ const Todos = () => {
         if (context.user === undefined) {
             return <Navigate to="/" replace={true} />
         } else {
-            const { data } = await instance.get(`/todos?email=${context.user.email}`)
-            setLists(data)
+            try {
+                const { data } = await instance.get(`/todos?email=${context.user.email}`)
+                setLists(data) 
+            } catch (error) {
+                console.log(error);
+                return <Navigate to="/" replace={true} />
+            }
+            
         }
 
     }
