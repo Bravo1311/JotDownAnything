@@ -59,7 +59,7 @@ const Todos = () => {
 
     const fetchLists = async () => {
         console.log('email is ' + context.user.email);
-        if (context.user.email === undefined) {
+        if (context.user === undefined) {
             return <Navigate to="/" replace={true} />
         } else {
             const { data } = await instance.get(`/todos?email=${context.user.email}`)
