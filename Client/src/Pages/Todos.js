@@ -37,21 +37,23 @@ const Todos = () => {
     const [todoItem, setTodoItem] = useState('')
 
 
-  
+
+    // useEffect(()=>{
+    //     firebase.auth().onAuthStateChanged((user)=>{
+    //         console.log('authenticating user');
+    //       context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
+    //     });
+    //   },[])
+
 
 
     const fetchLists = async () => {
         console.log('email is ' + context.user.email);
-        if (context.user === undefined) {
+        if (context.user.email === undefined) {
             return <Navigate to="/" replace={true} />
         } else {
-            try {
-                const { data } = await instance.get(`/todoss?email=${context.user.email}`)
-                setLists(data) 
-            } catch (error) {
-                console.log(error);
-                return <Navigate to="/" replace={true} />
-            }
+            const { data } = await instance.get(`/todoss?email=${context.user.email}`)
+            setLists(data)
         }
 
     }
@@ -69,7 +71,7 @@ const Todos = () => {
         console.log(id);
         console.log(items);
         try {
-            const { data } = await instance.put(`/todoss/items/${id}`, {
+            const { data } = await instance.put(`/todos/items/${id}`, {
                 todos: a
             })
             // setUser(data)
@@ -80,7 +82,7 @@ const Todos = () => {
     }
 
     const fetchListContent = async (id) => {
-        const { data } = await instance.get(`/todoss/items/${id}`)
+        const { data } = await instance.get(`/todos/items/${id}`)
         setItemId(id)
         setItems(data.todos)
     }
@@ -90,7 +92,7 @@ const Todos = () => {
         console.log(id)
         setLists(lists.filter(item => item._id !== id))
         try {
-            await instance.delete(`/todoss?id=${id}`)
+            await instance.delete(`/todos?id=${id}`)
             toast("Todo Group Successfully Removed", { type: "success" })
         } catch (error) {
             toast("Request Failed", { type: "error", autoClose: 3000 })
@@ -102,16 +104,17 @@ const Todos = () => {
 
 
     useEffect(() => {
+        console.log('user is: ' + context.user.email);
         fetchLists()
 
-    }, [])
+    }, [context.user.email])
 
     const deleteItem = async id => {
         const newList = items.filter((item) => item.uid !== id)
         setItems(newList)
         id = itemId
         try {
-            const { data } = await instance.put(`/todoss/items/${id}`, {
+            const { data } = await instance.put(`/todos/items/${id}`, {
                 todos: newList
             })
             // setUser(data)
@@ -126,7 +129,7 @@ const Todos = () => {
             return toast("Please enter a list name", { type: "error", autoClose: 3000 })
         }
         try {
-            const { data } = await instance.post(`/todoss`, { email: context.user.email, name: query })
+            const { data } = await instance.post(`/todos`, { email: context.user.email, name: query })
             // setUser(data)
             toast("Successfully added", { type: "success", autoClose: 3000 })
             fetchLists()
@@ -134,6 +137,7 @@ const Todos = () => {
             toast("Not able to locate user", { type: "error" })
         }
     }
+
 
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
