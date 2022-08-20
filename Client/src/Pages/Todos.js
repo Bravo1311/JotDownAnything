@@ -5,6 +5,7 @@ import { TodosContext } from "../context/todosContext";
 import Axios from "axios";
 import { AiFillCaretRight, AiFillDelete } from 'react-icons/ai'
 import { FaCheckDouble } from 'react-icons/fa'
+import firebase from "firebase/compat/app"
 
 import {
     Row,
@@ -34,6 +35,12 @@ const Todos = () => {
     const [items, setItems] = useState([])
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
+
+    useEffect(()=>{
+        firebase.auth().onAuthStateChanged((user)=>{
+          context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
+        });
+      },[])
 
 
 
