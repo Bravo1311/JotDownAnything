@@ -4,8 +4,8 @@ const gettodoslist = async (req, res) => {
     // res.send('First Response')
     try {
         const email = req.query.email
-        if(email == undefined){
-            return res.json({status:failed})
+        if(email === undefined){
+            return res.status(400).json({status:failed})
         }
         console.log('email is '+email);
         const users = await todos.find({
