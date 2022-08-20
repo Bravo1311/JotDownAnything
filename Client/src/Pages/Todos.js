@@ -5,6 +5,7 @@ import { TodosContext } from "../context/todosContext";
 import Axios from "axios";
 import { AiFillCaretRight, AiFillDelete } from 'react-icons/ai'
 import { FaCheckDouble } from 'react-icons/fa'
+import 'animate.css';
 
 import {
     Row,
@@ -150,7 +151,7 @@ const Todos = () => {
                             <ListGroup className=" xyz">
 
                                 {lists.slice(0).reverse().map((item, index) => (
-                                    <ListGroupItem key={item._id} className=' todolists mt-2'>
+                                    <ListGroupItem key={item._id} className=' todolists mt-2 animate__animated animate__zoomIn'>
                                         <Container fluid className="">
 
                                             <Row tabIndex={index}
@@ -202,7 +203,7 @@ const Todos = () => {
 
                                     {items.length !== 0 ? items.map(todo => (
 
-                                        <ListGroupItem className="item2" key={todo.uid}>
+                                        <ListGroupItem className="item2 item2 animate__animated animate__lightSpeedInLeft" key={todo.uid}>
                                             <Row >
                                                 <Col sm='11'>{todo.todo}</Col>
                                                 <Col sm='1'> <span
