@@ -37,10 +37,10 @@ const App = () => {
         <Header/>
         <Routes>
           <Route exact path = "/" element = {<Home/>}>
-            <Route exact path = "/todos" element = {<Todos/>}/>
+            <Route exact path = "/todolist" element = {<Todos/>}/>
             <Route exact path = "/quotes" element = {<Quotes/>}/>
             <Route exact path = "/notes" element = {<Notes/>}/>
-          </Route>
+          </Route>                          
           <Route exact path = "/signin" element = {<SignIn/>}/>
           <Route exact path = "/signup" element = {<SignUp/>}/>
           <Route exact path = "*" element  = {<PageNotFound/>}/>     

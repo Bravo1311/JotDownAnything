@@ -7,8 +7,8 @@ const {gettodoslist, posttodos, puttodos,deletetodos
 
 // const {getpeople, postname, postpostman, putname} = require('../controller/people')
 
- router.route('/todos').get(gettodoslist).post(posttodos).delete(deleteGroup)
- router.route('/todos/items/:id').get(gettodositems).put(puttodos).delete(deletetodos)
+ router.route('/todoss').get(gettodoslist).post(posttodos).delete(deleteGroup)
+ router.route('/todoss/items/:id').get(gettodositems).put(puttodos).delete(deletetodos)
 
 
 

@@ -36,11 +36,7 @@ const Todos = () => {
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
 
-    useEffect(() => {
-       if(context.user===undefined){
-        <Navigate to = '/' replace = {true}/>
-       }
-    }, []);
+
     const alertUser = (e) => {
         e.preventDefault();
         e.returnValue = "";
@@ -53,7 +49,7 @@ const Todos = () => {
             return <Navigate to="/" replace={true} />
         } else {
             try {
-                const { data } = await instance.get(`/todos?email=${context.user.email}`)
+                const { data } = await instance.get(`/todoss?email=${context.user.email}`)
                 setLists(data) 
             } catch (error) {
                 console.log(error);
@@ -76,7 +72,7 @@ const Todos = () => {
         console.log(id);
         console.log(items);
         try {
-            const { data } = await instance.put(`/todos/items/${id}`, {
+            const { data } = await instance.put(`/todoss/items/${id}`, {
                 todos: a
             })
             // setUser(data)
@@ -87,7 +83,7 @@ const Todos = () => {
     }
 
     const fetchListContent = async (id) => {
-        const { data } = await instance.get(`/todos/items/${id}`)
+        const { data } = await instance.get(`/todoss/items/${id}`)
         setItemId(id)
         setItems(data.todos)
     }
@@ -97,7 +93,7 @@ const Todos = () => {
         console.log(id)
         setLists(lists.filter(item => item._id !== id))
         try {
-            await instance.delete(`/todos?id=${id}`)
+            await instance.delete(`/todoss?id=${id}`)
             toast("Todo Group Successfully Removed", { type: "success" })
         } catch (error) {
             toast("Request Failed", { type: "error", autoClose: 3000 })
@@ -119,7 +115,7 @@ const Todos = () => {
         setItems(newList)
         id = itemId
         try {
-            const { data } = await instance.put(`/todos/items/${id}`, {
+            const { data } = await instance.put(`/todoss/items/${id}`, {
                 todos: newList
             })
             // setUser(data)
@@ -134,7 +130,7 @@ const Todos = () => {
             return toast("Please enter a list name", { type: "error", autoClose: 3000 })
         }
         try {
-            const { data } = await instance.post(`/todos`, { email: context.user.email, name: query })
+            const { data } = await instance.post(`/todoss`, { email: context.user.email, name: query })
             // setUser(data)
             toast("Successfully added", { type: "success", autoClose: 3000 })
             fetchLists()
@@ -143,6 +139,9 @@ const Todos = () => {
         }
     }
 
+    if(context.user===undefined){
+        <Navigate to = '/' replace = {true}/>
+       }
 
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
