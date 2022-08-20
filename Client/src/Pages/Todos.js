@@ -48,14 +48,6 @@ const Todos = () => {
         e.returnValue = "";
     };
 
-    // useEffect(()=>{
-    //     firebase.auth().onAuthStateChanged((user)=>{
-    //         console.log('authenticating user');
-    //       context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
-    //     });
-    //   },[])
-
-
 
     const fetchLists = async () => {
         console.log('email is ' + context.user.email);
@@ -117,7 +109,7 @@ const Todos = () => {
         console.log('user is: ' + context.user.email);
         fetchLists()
 
-    }, [context.user.email])
+    }, [])
 
     const deleteItem = async id => {
         const newList = items.filter((item) => item.uid !== id)
