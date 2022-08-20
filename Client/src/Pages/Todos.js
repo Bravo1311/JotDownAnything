@@ -97,7 +97,7 @@ const Todos = () => {
         console.log('user is: ' + context.user.email);
         fetchLists()
 
-    }, [])
+    }, [context.user.email])
 
     const deleteItem = async id => {
         const newList = items.filter((item) => item.uid !== id)
