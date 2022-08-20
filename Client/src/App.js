@@ -26,9 +26,7 @@ import Header from './Layout/Headers'
 
 const App = () => {
   const [user, setUser] = useState(null)
-  const [status, setStatus] = useState(false)
-
-  
+    
   return (
     <>
     <Router>
@@ -37,7 +35,7 @@ const App = () => {
         <Header/>
         <Routes>
           <Route exact path = "/" element = {<Home/>}>
-            <Route exact path = "/todolist" element = {<Todos/>}/>
+            <Route exact path = "/todos" element = {<Todos/>}/>
             <Route exact path = "/quotes" element = {<Quotes/>}/>
             <Route exact path = "/notes" element = {<Notes/>}/>
           </Route>                          

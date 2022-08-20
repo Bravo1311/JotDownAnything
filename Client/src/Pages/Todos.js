@@ -31,14 +31,6 @@ const instance = Axios.create({
 
 const Todos = () => {
     const context = useContext(UserContext)
-
-
-    useEffect(() => {
-        // firebase.auth().onAuthStateChanged((user) => {
-        //     context.setUser({ email: user.email, Uid: user.uid, username: user.displayName })
-        // });
-
-    }, [])
     const [query, setQuery] = useState('')
     const [lists, setLists] = useState([])
     const [items, setItems] = useState([])
@@ -68,7 +60,7 @@ const Todos = () => {
         console.log(id);
         console.log(items);
         try {
-            const { data } = await instance.put(`/todos/items/${id}`, {
+            const { data } = await instance.put(`/todoss/items/${id}`, {
                 todos: a
             })
             // setUser(data)
@@ -79,7 +71,7 @@ const Todos = () => {
     }
 
     const fetchListContent = async (id) => {
-        const { data } = await instance.get(`/todos/items/${id}`)
+        const { data } = await instance.get(`/todoss/items/${id}`)
         setItemId(id)
         setItems(data.todos)
     }
@@ -89,7 +81,7 @@ const Todos = () => {
         console.log(id)
         setLists(lists.filter(item => item._id !== id))
         try {
-            await instance.delete(`/todos?id=${id}`)
+            await instance.delete(`/todoss?id=${id}`)
             toast("Todo Group Successfully Removed", { type: "success" })
         } catch (error) {
             toast("Request Failed", { type: "error", autoClose: 3000 })
@@ -101,7 +93,7 @@ const Todos = () => {
 
 
     useEffect(() => {
-        console.log(context.user);
+        console.log('user is '+context.user);
         fetchLists()
     }, [])
 
@@ -110,7 +102,7 @@ const Todos = () => {
         setItems(newList)
         id = itemId
         try {
-            const { data } = await instance.put(`/todos/items/${id}`, {
+            const { data } = await instance.put(`/todoss/items/${id}`, {
                 todos: newList
             })
             // setUser(data)
@@ -125,7 +117,7 @@ const Todos = () => {
             return toast("Please enter a list name", { type: "error", autoClose: 3000 })
         }
         try {
-            const { data } = await instance.post(`/todos`, { email: context.user.email, name: query })
+            const { data } = await instance.post(`/todoss`, { email: context.user.email, name: query })
             // setUser(data)
             toast("Successfully added", { type: "success", autoClose: 3000 })
             fetchLists()
