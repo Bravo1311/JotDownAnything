@@ -49,13 +49,8 @@ const Todos = () => {
 
     const fetchLists = async () => {
         console.log('email is ' + context.user.email);
-        if (context.user.email === undefined) {
-            return <Navigate to="/" replace={true} />
-        } else {
-            const { data } = await instance.get(`/todoss?email=${context.user.email}`)
-            setLists(data)
-        }
-
+        const { data } = await instance.get(`/todoss?email=${context.user.email}`)
+        setLists(data)
     }
 
     const createNewItem = async (id) => {
