@@ -36,9 +36,7 @@ const Todos = () => {
     const [items, setItems] = useState([])
     const [itemId, setItemId] = useState('')
     const [todoItem, setTodoItem] = useState('')
-
-
-
+    const [selected, setSelected] = useState(false)
 
     const fetchLists = async () => {
         console.log('redirect');
@@ -93,7 +91,7 @@ const Todos = () => {
 
 
     useEffect(() => {
-        console.log('user is '+context.user);
+        console.log('user is ' + context.user);
         fetchLists()
     }, [])
 
@@ -155,7 +153,16 @@ const Todos = () => {
                                     <ListGroupItem key={item._id} className=' todolists mt-2'>
                                         <Container fluid className="">
 
-                                            <Row tabIndex={index} className="items " onClick={() => { fetchListContent(item._id) }}>
+                                            <Row tabIndex={index}
+                                                style={{
+                                                    backgroundImage: selected === item._id ? 'linear-gradient(#f7ece1, #FFAB76)' : '',
+                                                    borderRadius: '10px',
+                                                    padding: '5px'
+                                                }}
+                                                className="items " onClick={(e) => {
+                                                    fetchListContent(item._id)
+                                                    setSelected(item._id)
+                                                }}>
                                                 <Col md="10" sm='10'>
                                                     {item.name}
                                                     {/* <span className="float-right"

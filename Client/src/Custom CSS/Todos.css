@@ -33,6 +33,7 @@
   background-color: #2C3639   ;
   color: white;
   border-radius: 10px;
+  word-wrap: break-word;
 }
 
 ::-webkit-scrollbar {
@@ -54,11 +55,11 @@
   background: #EFFFFB; 
 }
 
-.items:focus{
+/* .items:focus{
   background-image: linear-gradient(#f7ece1, #FFAB76);
   border-radius: 10px;
   padding: 5px;
-}
+} */
 
 .xyz {
   padding: 2%;
@@ -88,6 +89,7 @@
 .items {
   margin: 2%;
   line-height: 30px;
+  word-wrap: break-word;
   /* font-size: larger; */
   background-color: #FEFBF3;
   border-style: solid;
