@@ -37,10 +37,7 @@ const Todos = () => {
     const [todoItem, setTodoItem] = useState('')
 
 
-    const alertUser = (e) => {
-        e.preventDefault();
-        e.returnValue = "";
-    };
+  
 
 
     const fetchLists = async () => {
@@ -105,7 +102,6 @@ const Todos = () => {
 
 
     useEffect(() => {
-        console.log('user is: ' + context.user.email);
         fetchLists()
 
     }, [])
@@ -138,10 +134,6 @@ const Todos = () => {
             toast("Not able to locate user", { type: "error" })
         }
     }
-
-    if(context.user===undefined){
-        <Navigate to = '/' replace = {true}/>
-       }
 
     // const [todos, dispatch] = useReducer(todoReducer, []);
 
