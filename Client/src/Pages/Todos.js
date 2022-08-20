@@ -5,7 +5,6 @@ import { TodosContext } from "../context/todosContext";
 import Axios from "axios";
 import { AiFillCaretRight, AiFillDelete } from 'react-icons/ai'
 import { FaCheckDouble } from 'react-icons/fa'
-import firebase from "firebase/compat/app"
 
 import {
     Row,
@@ -24,12 +23,22 @@ import { v4 } from "uuid";
 
 import '../Custom CSS/Todos.css'
 
+import firebase from "firebase/compat/app"
+
 const instance = Axios.create({
     baseURL: ''
 })
 
 const Todos = () => {
     const context = useContext(UserContext)
+
+
+    useEffect(() => {
+        // firebase.auth().onAuthStateChanged((user) => {
+        //     context.setUser({ email: user.email, Uid: user.uid, username: user.displayName })
+        // });
+
+    }, [])
     const [query, setQuery] = useState('')
     const [lists, setLists] = useState([])
     const [items, setItems] = useState([])
@@ -38,18 +47,11 @@ const Todos = () => {
 
 
 
-    // useEffect(()=>{
-    //     firebase.auth().onAuthStateChanged((user)=>{
-    //         console.log('authenticating user');
-    //       context.setUser({email:user.email, Uid:user.uid, username:user.displayName})
-    //     });
-    //   },[])
-
-
 
     const fetchLists = async () => {
-        console.log('email is ' + context.user.email);
+        console.log('redirect');
         const { data } = await instance.get(`/todoss?email=${context.user.email}`)
+
         setLists(data)
     }
 
@@ -99,10 +101,9 @@ const Todos = () => {
 
 
     useEffect(() => {
-        console.log('user is: ' + context.user.email);
+        console.log(context.user);
         fetchLists()
-
-    }, [context.user.email])
+    }, [])
 
     const deleteItem = async id => {
         const newList = items.filter((item) => item.uid !== id)
