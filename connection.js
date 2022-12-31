@@ -1,3 +1,3 @@
-const DB = 'mongodb+srv://kartik:bigbrother@cluster0.mfhabng.mongodb.net/jotanything?retryWrites=true&w=majority'
+const DB = 'Enter your MongoDB URL here'
 
 module.exports = DB
